@@ -11,7 +11,8 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
  && apt-get -y autoremove
  
 WORKDIR /opt/MTProxy
-git clone https://github.com/TelegramMessenger/MTProxy
+RUN curl -s https://core.telegram.org/getProxySecret -o proxy-secret
+RUN curl -s https://core.telegram.org/getProxyConfig -o proxy-multi.conf
 RUN git clone https://github.com/TelegramMessenger/MTProxy .
 RUN make
 
