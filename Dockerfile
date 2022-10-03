@@ -2,7 +2,7 @@ FROM debian:stable-slim
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
 	git  \
-	curl  \
+	wget  \
 	gcc \
 	build-essential \
 	libssl-dev \
@@ -11,8 +11,8 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
  && apt-get -y autoremove
  
 WORKDIR /opt/MTProxy
-RUN curl -o proxy-secret https://core.telegram.org/getProxySecret
-RUN curl -o proxy-multi.conf https://core.telegram.org/getProxyConfig
+RUN wget -O proxy-secret https://core.telegram.org/getProxySecret
+RUN wget -O proxy-multi.conf https://core.telegram.org/getProxyConfig
 RUN git clone https://github.com/TelegramMessenger/MTProxy .
 RUN make
 
