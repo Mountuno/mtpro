@@ -13,7 +13,7 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
 WORKDIR /opt/MTProxy
 RUN wget -O proxy-secret https://core.telegram.org/getProxySecret --no-check-certificate
 RUN wget -O proxy-multi.conf https://core.telegram.org/getProxyConfig --no-check-certificate
-RUN git clone https://github.com/TelegramMessenger/MTProxy .
+RUN git -c http.sslVerify=false clone https://github.com/TelegramMessenger/MTProxy .
 RUN make
 
 RUN curl https://core.telegram.org/getProxySecret /etc/telegram/proxy-secret
